@@ -137,7 +137,7 @@ body {
 .welcome-title {
   font-family: 'Kumbh Sans';
   font-size: 68px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 84px;
   width: 787px;
   height: 84px;
@@ -179,7 +179,7 @@ body {
 .welcome-tagline {
   font-family: 'Kumbh Sans';
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 45px;
   width: 787px;
   height: 45px;
@@ -208,7 +208,7 @@ body {
 .language-title {
   font-family: 'Kumbh Sans';
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 40px;
   color: #0E0E0D;
   margin-bottom: 6px;
@@ -234,7 +234,7 @@ body {
   justify-content: space-between;
   padding: 16px 20px;
   margin-bottom: 12px;
-  border: 2px solid #E5E5E5;
+  border: 1px solid #E5E5E5;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -273,7 +273,7 @@ body {
 .radio-indicator {
   width: 20px;
   height: 20px;
-  border: 2px solid #E5E5E5;
+  border: 1px solid #E5E5E5;
   border-radius: 50%;
   position: relative;
   transition: all 0.2s ease;

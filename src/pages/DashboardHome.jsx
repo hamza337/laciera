@@ -87,24 +87,31 @@ const MetricCard = ({ title, value, sub, sparkColor = '#009382', showTrendArrow 
 
 const DeviceCard = ({ title, status, power, accent, efficiency = 95, icon = null }) => (
   <div className={styles.ldDeviceCard}>
-    <div className={styles.ldDeviceRow}>
-      <div className={styles.ldDeviceTitleRow}>
-        {icon && <span className={styles.ldDeviceIcon}>{icon}</span>}
-        <div className={styles.ldDeviceTitle}>{title}</div>
-      </div>
+    {/* Row 1: Icon + Active badge */}
+    <div className={styles.ldTopRow}>
+      {icon && <span className={styles.ldIconTile}>{icon}</span>}
       <span className={styles.ldBadge}>Active</span>
     </div>
-    <div className={styles.ldDeviceRow}>
-      <span className={styles.ldDeviceStatus}>{status}</span>
-      <span className={styles.ldDevicePower}>Power: {power}</span>
+
+    {/* Row 2: Title + Power */}
+    <div className={styles.ldTitlePowerRow}>
+      <div className={styles.ldDeviceTitle}>{title}</div>
+      <span className={styles.ldDevicePower}>Power : {power}</span>
     </div>
-    <div className={styles.ldDeviceRow}>
+
+    {/* Row 3: Efficiency + Percentage */}
+    <div className={styles.ldEfficiencyRow}>
       <span className={styles.ldDeviceStatus}>Efficiency</span>
       <span className={styles.ldDevicePower}>{efficiency}%</span>
     </div>
+
+    {/* Row 4: Progress bar */}
     <div className={styles.ldProgressWrap}>
       <div className={styles.ldProgressFill} style={{ width: `${efficiency}%`, background: accent }}></div>
     </div>
+
+    {/* Row 5: Generating Power text */}
+    <div className={styles.ldStatusBottom}>{status}</div>
   </div>
 );
 
@@ -256,7 +263,7 @@ const DashboardHome = () => {
             <DeviceCard 
               title="Solar Panels" 
               status="Generating Power" 
-              power="4.5kW" 
+              power="4.5 KW" 
               efficiency={95}
               accent="#F7AE1B" 
               icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" fill="#F7AE1B"/><path d="M12 1v4M12 19v4" stroke="#F7AE1B" strokeWidth="2" strokeLinecap="round"/><path d="M1 12h4M19 12h4" stroke="#F7AE1B" strokeWidth="2" strokeLinecap="round"/></svg>}
@@ -264,7 +271,7 @@ const DashboardHome = () => {
             <DeviceCard 
               title="Home Battery" 
               status="92% Charged" 
-              power="4.5kW" 
+              power="4.5 KW" 
               efficiency={92}
               accent="#4F8AD7" 
               icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="6" width="14" height="12" rx="2" stroke="#4F8AD7" strokeWidth="2"/><path d="M12 8v6" stroke="#4F8AD7" strokeWidth="2"/></svg>} 
@@ -272,7 +279,7 @@ const DashboardHome = () => {
             <DeviceCard 
               title="EV Charger" 
               status="87% Charged" 
-              power="4.5kW" 
+              power="4.5 KW" 
               efficiency={92}
               accent="#00A693" 
               icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4h6a2 2 0 0 1 2 2v10a3 3 0 1 1-6 0V6a2 2 0 0 1 2-2" stroke="#00A693" strokeWidth="2" strokeLinecap="round"/><path d="M17 8h2l2 2v5a2 2 0 0 1-2 2h-1" stroke="#00A693" strokeWidth="2" strokeLinecap="round"/></svg>}
@@ -280,31 +287,31 @@ const DashboardHome = () => {
           </div>
         </div>
 
-        <div className={styles.ldPanel}>
+        <div className={styles.ldPanel + ' ' + styles.ldPanelAi}>
           <div className={styles.ldPanelHeader}><span>AI Recommendation For You</span></div>
           <div className={styles.ldRecommendations}>
             <div className={styles.ldRecoSectionTitle}>This weeks</div>
             {[1,2].map((i) => (
               <div key={`now-${i}`} className={styles.ldRecoItem}>
-                <div className={styles.ldRecoDot}></div>
+                <img className={styles.ldRecoIcon} src="/ai.png" alt="Ai Recommendation" />
                 <div className={styles.ldRecoText}>
-                  <div className={styles.ldRecoTitle}>Optimize EV Charging (by app)</div>
+                  <div className={styles.ldRecoTitle}>Optimize EV Charging (by app)  <span className={styles.ldRecoMeta}>1 day ago</span></div>
                   <div className={styles.ldRecoDesc}>Shift EV Charging to 11 PM - 6 AM to save $50/month on electricity costs</div>
                 </div>
-                <div className={styles.ldRecoMeta}>1 hr ago</div>
+                {/* <div className={styles.ldRecoMeta}>1 hr ago</div> */}
                 <button className={styles.ldRecoMenu} aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#9AA1A6" strokeWidth="2" strokeLinecap="round"/></svg></button>
               </div>
             ))}
 
-            <div className={styles.ldRecoSectionTitle}>earlier</div>
+            <div className={styles.ldRecoSectionTitle}>Earlier</div>
             {[1,2].map((i) => (
               <div key={`old-${i}`} className={styles.ldRecoItem}>
-                <div className={styles.ldRecoDot}></div>
+                <img className={styles.ldRecoIcon} src="/ai.png" alt="Ai Recommendation" />
                 <div className={styles.ldRecoText}>
-                  <div className={styles.ldRecoTitle}>Optimize EV Charging (by app)</div>
+                  <div className={styles.ldRecoTitle}>Optimize EV Charging (by app) <span className={styles.ldRecoMeta}>1 day ago</span></div>
                   <div className={styles.ldRecoDesc}>Shift EV Charging to 11 PM - 6 AM to save $50/month on electricity costs</div>
                 </div>
-                <div className={styles.ldRecoMeta}>1 day ago</div>
+                {/* <div className={styles.ldRecoMeta}>1 day ago</div> */}
                 <button className={styles.ldRecoMenu} aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#9AA1A6" strokeWidth="2" strokeLinecap="round"/></svg></button>
               </div>
             ))}

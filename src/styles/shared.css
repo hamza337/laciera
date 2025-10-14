@@ -36,7 +36,7 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 50%;
   background: white;
   transition: all 0.2s ease;

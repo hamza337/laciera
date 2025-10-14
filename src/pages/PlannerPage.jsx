@@ -12,7 +12,7 @@ const PlannerPage = () => {
   const devices = [
     { name: 'EV Charger', kw: '4.2 kW', time: '7am - 9am', icon: '🔌' },
     { name: 'Heat Pump', kw: '4.2 kW', time: '7am - 9am', icon: '🔥' },
-    { name: 'Split AC / Central AC', kw: '4.2 kW', time: '7am - 9am', icon: '❄️' },
+    { name: 'Central AC', kw: '4.2 kW', time: '7am - 9am', icon: '❄️' },
     { name: 'Electric Heater', kw: '4.2 kW', time: '7am - 9am', icon: '♨️' },
     { name: 'Dishwasher', kw: '4.2 kW', time: '7am - 9am', icon: '🧼' },
     { name: 'Oven', kw: '4.2 kW', time: '7am - 9am', icon: '🍳' },
@@ -37,7 +37,7 @@ const PlannerPage = () => {
   };
 
   return (
-    <section className="dl-panel">
+    <section>
       <div className={styles.plannerRoot}>
         <div className={styles.headerRow}>
           <div>
