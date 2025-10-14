@@ -1,0 +1,95 @@
+:root {
+  --ld-text: #0E0E0D;
+  --ld-muted: #9AA1A6;
+  --ld-border: #E3E3E3;
+  --ld-panel: #FFFFFF;
+  --ld-teal: #009382;
+  --ld-sidebar-width: 260px; /* keep in sync with sidebar revert */
+  --ld-shell-gap: 24px;
+  --ld-topbar-padding: 24px;
+}
+.ldTopbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px; /* exact height to match reference */
+  background: #F1F3F4;
+  border-bottom: 2px solid var(--ld-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--ld-topbar-padding);
+}
+.ldTopLeft { display: flex; align-items: center; gap: 16px; }
+.ldBrandRow { display: flex; align-items: center; gap: 10px; }
+.ldTopLogo { width: 36px; height: 36px; border-radius: 6px; object-fit: contain; }
+.ldBrandName { font-weight: 700; color: var(--ld-teal); letter-spacing: 0.6px; }
+/* Breadcrumb aligned to main content start (right of sidebar) */
+.ldBreadcrumbAbs {
+  position: absolute;
+  left: calc(var(--ld-topbar-padding) + var(--ld-sidebar-width) + var(--ld-shell-gap));
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: var(--ld-muted);
+  display: inline-flex; /* enable separator inline */
+  align-items: center;
+  gap: 12px;
+}
+.ldBreadcrumbAbs::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 24px;
+  background: var(--ld-border); /* subtle grey separator */
+  border-radius: 1px;
+}
+.ldRight { display: flex; align-items: center; gap: 12px; }
+.ldIconBtn { width: 36px; height: 36px; border-radius: 12px; border: 2px solid var(--ld-border); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+/* .ldIconBtn:hover { background: #F7F9FA; } */
+
+/* Language pill refined */
+.ldLangBtn { height: 40px; display: inline-flex; align-items: center; gap: 10px; padding: 0 14px; border: 2px solid var(--ld-border); border-radius: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+/* .ldLangBtn:hover { background: #F7F9FA; } */
+.ldFlag { width: 24px; height: 16px; border-radius: 3px; object-fit: cover; }
+.ldLangText { color: var(--ld-text); font-weight: 700; }
+.ldCaret { display: inline-block; width: 10px; height: 10px; }
+
+/* User block refined */
+.ldUser { display: flex; align-items: center; gap: 12px; font-weight: 700; white-space: nowrap; }
+.ldAvatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.ldUserName { color: var(--ld-text); }
+.ldTopbarTransparent { border-bottom-color: transparent; }
+
+/* Responsive topbar: collapse right-side controls on mobile, reposition breadcrumb */
+@media (max-width: 1024px) {
+  .ldBreadcrumbAbs { left: calc(var(--ld-topbar-padding) + 200px + var(--ld-shell-gap)) !important; }
+}
+@media (max-width: 768px) {
+  .ldBreadcrumbAbs { display: none !important; }
+  .ldTopbar { height: auto !important; padding: 10px 16px !important; flex-wrap: wrap !important; gap: 10px !important; }
+  .ldRight { gap: 8px !important; }
+  .ldUserName { display: none !important; }
+}
+
+/* Hamburger visibility on small screens */
+.ldMenuBtn { display: none; background: transparent; border: none; border-radius: 10px; padding: 8px; cursor: pointer; }
+@media (max-width: 768px) {
+  .ldMenuBtn { display: inline-flex !important; }
+}
+
+/* Ultra-narrow phones: keep everything on one row by tightening UI */
+@media (max-width: 437px) {
+  .ldTopbar { padding: 8px 10px !important; gap: 6px !important; flex-wrap: nowrap !important; }
+  .ldTopLeft { gap: 8px !important; }
+  .ldBrandName { display: none !important; }
+  .ldTopLogo { width: 28px !important; height: 28px !important; }
+  .ldRight { gap: 6px !important; }
+  .ldIconBtn { width: 32px !important; height: 32px !important; }
+  .ldLangBtn { height: 32px !important; padding: 0 10px !important; }
+  .ldFlag { width: 18px !important; height: 12px !important; }
+  .ldLangText { display: none !important; }
+  .ldAvatar { width: 32px !important; height: 32px !important; }
+}

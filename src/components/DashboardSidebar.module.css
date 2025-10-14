@@ -1,0 +1,128 @@
+:root {
+  --ld-teal: #009382;
+  --ld-teal-light: rgba(0, 147, 130, 0.10);
+  --ld-text: #0E0E0D;
+  --ld-muted: #9AA1A6;
+  --ld-border: #E3E3E3;
+  --ld-panel: #FFFFFF;
+  --ld-sidebar-bg: #F7F9FA;
+  --ld-sidebar-width: 260px; /* revert width */
+  --ld-top-section-height: 0px; /* default to 0 to avoid calc(auto) */
+}
+
+.ldSidebar {
+  position: sticky;
+  top: 0; /* align with main content start (dl-body has margin-top 64px) */
+  height: calc(100vh - 64px) !important; /* full viewport minus fixed topbar */
+  overflow: hidden; /* never scroll */
+  width: var(--ld-sidebar-width);
+  /* margin-top: 72px; add an 8px visual gap below the top bar */
+  padding-top: 36px; /* compensate by -8px so first nav aligns with Dashboard title */
+  background: var(--ld-panel);
+  border: 1px solid #E7EBEE;
+  border-radius: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: flex-start; /* prevent stretching to match main column height */
+  overflow: visible;
+}
+
+.ldBrand { display: none; }
+.ldLogoRow { display: flex; align-items: center; gap: 10px; }
+.ldLogo { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
+.ldBrandName { font-weight: 700; color: var(--ld-text); letter-spacing: 0.6px; }
+.ldSectionCaption { display: none; }
+
+.ldNav { 
+  background: var(--ld-panel);
+  border: 2px solid var(--ld-border);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  background: transparent; border: 0; border-radius: 0; padding: 0; box-shadow: none; }
+  .ldNav ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; }
+.ldNavItem { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 14px; color: var(--ld-text); cursor: pointer; transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; }
+.ldNavItem:not(.ldNavItemActive):hover { background: #EFF7F6; }
+.ldNavItem .ldIcon { color: #585858; }
+.ldNavItemActive { background: var(--ld-teal); box-shadow: 0 2px 8px rgba(0, 147, 130, 0.24); }
+.ldNavItemActive:hover { background: var(--ld-teal); }
+.ldNavItemActive .ldIcon { color: #ffffff; }
+.ldNavItemActive .ldLabel { color: #ffffff; }
+.ldIcon { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; }
+.ldLabel { font-weight: 600; }
+
+.ldHelpCard { 
+  margin-top: auto; 
+  background: #F4FBF9; 
+  border: 1px solid #E6F3F0; 
+  border-radius: 20px; 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  gap: 14px; 
+  box-shadow: 0 6px 18px rgba(0, 147, 130, 0.08);
+}
+.ldHelpIcon { 
+  width: 64px; 
+  height: 64px; 
+  border-radius: 50%; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: transparent; 
+}
+.ldHelpText { 
+  font-weight: 700; 
+  color: var(--ld-text); 
+  font-size: 22px; 
+}
+.ldHelpButton { 
+  background: var(--ld-teal); 
+  color: white; 
+  border: none; 
+  border-radius: 14px; 
+  padding: 12px 16px; 
+  font-weight: 700; 
+  font-size: 16px; 
+  cursor: pointer; 
+  width: 100%; 
+}
+.ldHelpButton:hover { background: #007E6F; }
+.ldShell { display: flex; min-height: 100vh; background: var(--ld-bg); gap: 24px; }
+.ldMain { flex: 1; display: flex; flex-direction: column; padding-top: 92px; }
+.ldContent { padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 20px; }
+/* Cap sidebar height to top section of content (before Device Status Overview) */
+:root { /* --ld-top-section-height: auto; */ }
+.ldSidebar { /* keep height from top rule; no max-height override */ }
+
+/* Responsive sidebar: shrink widths and hide on small screens */
+@media (max-width: 1280px) {
+  :root { --ld-sidebar-width: 220px !important; }
+}
+@media (max-width: 1024px) {
+  :root { --ld-sidebar-width: 200px !important; }
+  .ldHelpText { font-size: 18px !important; }
+}
+@media (max-width: 900px) {
+  :root { --ld-sidebar-width: 180px !important; }
+}
+@media (max-width: 768px) {
+  .ldSidebar { display: none !important; }
+}
+
+/* Ensure sidebar is visible inside the mobile drawer panel */
+@media (max-width: 768px) {
+  :global(.dl-drawer-panel) .ldSidebar {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    overflow-y: auto !important;
+  }
+}

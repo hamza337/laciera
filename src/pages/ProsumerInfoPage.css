@@ -1,0 +1,2706 @@
+/* Prosumer Info Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+:root {
+  --brand-teal: #009382; /* Updated to match Figma Primary 1 color */
+  --text-dark: #0E0E0D;
+  --text-muted: #585858; /* Updated to match Figma Sub Text color */
+  --border: #E5E5E5;
+  --bg-gray: #F6F7F8;
+  --light-gray: #EDEBEB;
+}
+
+.prosumer-page {
+  display: grid;
+  grid-template-columns: 464px 1fr; /* Match Figma width */
+  min-height: 100vh;
+  font-family: 'Kumbh Sans', sans-serif;
+  background: linear-gradient(72.44deg, #FFFFFF 0%, #FFFFFF 9.67%, #F6F6F6 32.14%, #ECEEF0 100%);
+}
+
+/* Left Sidebar */
+.sidebar {
+  background: #F2F4F5;
+  border-right: 1px solid #E8EAED;
+  padding: 60px 60px; /* Match Figma padding */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.brand img { 
+  width: 44px; 
+  height: 54px; 
+}
+
+.step-caption { 
+  font-family: 'Kumbh Sans';
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  line-height: 25px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  width: 100%;
+  margin-top: 32px;
+}
+
+.stepper { 
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  width: 100%;
+  position: relative;
+}
+
+/* Add vertical line connecting steps */
+.stepper::before {
+  content: '';
+  position: absolute;
+  left: 10px; /* Center with the circles */
+  top: 40px; /* Start below first circle */
+  height: calc(100% - 40px); /* Extend to bottom */
+  width: 1px; /* Thinner line to match design */
+  background: #E3E3E3;
+  z-index: 0;
+}
+
+.step { 
+  display: flex; 
+  flex-direction: row;
+  align-items: center; 
+  gap: 24px; 
+  padding: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.step .circle { 
+  width: 20px; 
+  height: 20px; 
+  border-radius: 500px;
+  background: var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.step .label { 
+  font-family: 'Kumbh Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 25px;
+  color: var(--text-muted);
+}
+
+.step.active .label { 
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.step.active .circle { 
+  background: var(--brand-teal);
+}
+
+/* Right Content */
+.content { 
+  padding: 60px 80px 60px;
+  background: #FFFFFF;
+}
+
+.content-inner {
+  width: 1099px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* form starts directly below header */
+  padding: 0;
+  /* gap: 32px; */
+}
+
+.page-header {
+  width: 100%;
+}
+
+.form-grid {
+  width: 100%;
+  max-width: unset;
+}
+
+/* Inside auto layout for children of right-side container */
+.content-inner > * {
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  z-index: 0;
+}
+.page-header { 
+  margin-bottom: 28px; 
+  display: flex; 
+  align-items: flex-start; 
+  justify-content: space-between; 
+  position: relative; 
+}
+
+/* Replace right-side badges with illustration image */
+.header-illustration {
+  width: 280px; /* adjust as needed */
+  height: auto;
+  object-fit: contain;
+  margin-top: -8px; /* roughly align with subtitle per provided image */
+}
+
+/* Remove badge styles (no longer used) */
+.header-actions { display: none; }
+.check-badge { display: none; }
+.message-badge { display: none; }
+
+.message-badge .line { 
+  display: block; 
+  width: 16px; 
+  height: 2px; 
+  background: #BFC6C9; 
+  border-radius: 2px; 
+}
+
+.message-badge .line.short { 
+  width: 10px; 
+}
+
+.header-left { 
+  max-width: 560px; 
+}
+
+.page-title {
+  font-size: 32px; /* Figma header size */
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.page-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-muted);
+}
+
+.form-label {
+  font-size: 12px; /* Figma label size */
+  line-height: 20px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.form-input, .form-select {
+  height: 44px; /* Figma field height */
+  font-size: 16px; /* Figma field text size */
+}
+
+/* Placeholder styling for neat look */
+.form-input::placeholder, .has-prefix::placeholder {
+  color: #BFC6C9;
+}
+
+@import '../styles/shared.css';
+
+/* Budget pill text sizing */
+.budget-label { font-size: 11px; }
+
+/* Next button text sizing */
+.next-button { font-size: 16px; }
+.form-grid { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 18px !important; 
+  max-width: 900px;
+}
+
+.form-row { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  height: 40px;
+  padding: 12px 40px 12px 16px;
+  font-size: 14px;
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  background: #fff;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: 'Kumbh Sans';
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.custom-select-trigger::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  transition: transform 0.2s ease;
+}
+
+.custom-select-trigger.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.custom-select-trigger:hover {
+  border-color: #009382;
+}
+
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.custom-select-option {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Kumbh Sans';
+}
+
+.custom-select-option {
+  position: relative;
+}
+
+.custom-select-option:hover {
+  background: rgba(0, 147, 130, 0.08);
+  color: #009382;
+}
+
+.custom-select-option.selected {
+  color: #009382;
+  font-weight: 500;
+}
+
+.custom-select-option.selected::before {
+  content: '✓';
+  position: absolute;
+  right: 16px;
+  color: #009382;
+}
+
+.form-input {
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+  height: 48px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+  color: #333333;
+  transition: all 0.2s ease;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.form-input:hover {
+  border-color: #009382;
+}
+
+.form-input:focus {
+  border-color: #009382;
+  box-shadow: 0 0 0 4px rgba(0, 147, 130, 0.1);
+}
+
+.form-input::placeholder {
+  color: #BFC6C9;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+/* Focus styles moved to individual selectors */
+
+.phone-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.phone-input-container:hover {
+  border-color: #009382;
+}
+
+.phone-input-container:focus-within {
+  border-color: #009382;
+  box-shadow: 0 0 0 4px rgba(0, 147, 130, 0.1);
+}
+
+.country-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.country-flag {
+  font-size: 20px;
+}
+
+.dropdown-arrow {
+  margin-left: 4px;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 24px;
+  background-color: #E3E3E3;
+  margin: 0;
+}
+
+.phone-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: 'Kumbh Sans';
+  color: #333333;
+  background: transparent;
+}
+
+.phone-input::placeholder {
+  color: #BFC6C9;
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0; 
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 529.5px;
+}
+
+.budget-group .budget-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  height: 48px;
+  padding: 0 4px !important;
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+.budget-group .budget-option::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #C7C7C7;
+  background: transparent;
+}
+
+.budget-group .budget-option.active {
+  background: #009382;
+  border-color: #009382;
+}
+
+.budget-group .budget-option.active span {
+  color: #ffffff;
+}
+
+.budget-group .budget-option.active::before {
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 12px; 
+  height: 52px;
+  padding: 0 28px;
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+/* Budget pill label colors to match screenshot */
+.budget-option .budget-label { color: var(--text-dark); }
+.budget-option.active { border-color: var(--brand-teal); background: #fff; border-width: 2px; box-shadow: 0 0 0 3px rgba(0,147,130,0.12); }
+.budget-option.active .budget-label { color: var(--brand-teal); }
+
+/* Final override: circle radios layout and colors per Figma */
+.radio-options.radio-circle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px !important;
+}
+.radio-options.radio-circle .radio-option {
+  border: none;
+  background: transparent;
+  padding: 8px 12px;
+}
+.radio-options.radio-circle .radio-option::before {
+  content: '';
+  display: inline-block;
+  width: 14px; /* bigger circle per figma */
+  height: 14px;
+  border: 2px solid var(--brand-teal); /* default teal outline */
+  border-radius: 50%;
+  background: transparent;
+  margin-right: 16px; /* match figma circle-to-label spacing */
+  box-shadow: none;
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option span { color: var(--text-dark); }
+.radio-options.radio-circle .radio-option.active span { color: var(--brand-teal); }
+.radio-options.radio-circle .radio-option.disabled::before { border-color: var(--border); background: transparent; }
+.radio-options.radio-circle .radio-option.disabled span { color: var(--text-muted); }
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+/* Budget styles moved to .budget-group section */
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 12px 18px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+.radio-options.radio-circle { 
+  gap: 20px; /* consistent horizontal spacing between items */
+}
+.radio-options.radio-circle .radio-option {
+  border: none; /* no pill border */
+  background: transparent;
+  padding: 8px 12px; /* uniform clickable area: top, left, right */
+}
+.radio-options.radio-circle .radio-option::before {
+  margin-right: 12px; /* consistent gap between circle and label */
+}
+.radio-options.radio-circle .radio-option.active {
+  background: transparent !important; /* no pill background for circle style */
+}
+.radio-options.radio-circle .radio-option::before {
+  border-color: var(--border); /* inactive circle uses default grey border */
+}
+.radio-options.radio-circle .radio-option span {
+  color: var(--text-dark); /* keep default label color when inactive */
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option.active span {
+  color: var(--brand-teal); /* label turns teal on click */
+}
+.radio-options.radio-circle .radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+}
+.radio-options.radio-circle .radio-option.disabled span {
+  color: var(--text-muted);
+}
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.budget-option { 
+  border: 1.5px solid var(--border); 
+  border-radius: 22px; 
+  padding: 12px 18px; 
+  background: #fff; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  cursor: pointer; 
+}
+
+.budget-option input { 
+  display: none; 
+}
+
+.budget-option::before { 
+  content: none; 
+  display: none; 
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+}
+
+.budget-option.active { 
+  border-color: var(--brand-teal); 
+  background: rgba(0,147,130,0.08); 
+}
+
+.budget-option.active::before { 
+  border-color: var(--brand-teal); 
+  background: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset; 
+}
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 12px 18px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+.radio-options.radio-circle { 
+  gap: 20px; /* consistent horizontal spacing between items */
+}
+.radio-options.radio-circle .radio-option {
+  border: none; /* no pill border */
+  background: transparent;
+  padding: 8px 12px; /* uniform clickable area: top, left, right */
+}
+.radio-options.radio-circle .radio-option::before {
+  margin-right: 12px; /* consistent gap between circle and label */
+}
+.radio-options.radio-circle .radio-option.active {
+  background: transparent !important; /* no pill background for circle style */
+}
+.radio-options.radio-circle .radio-option::before {
+  border-color: var(--border); /* inactive circle uses default grey border */
+}
+.radio-options.radio-circle .radio-option span {
+  color: var(--text-dark); /* keep default label color when inactive */
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option.active span {
+  color: var(--brand-teal); /* label turns teal on click */
+}
+.radio-options.radio-circle .radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+}
+.radio-options.radio-circle .radio-option.disabled span {
+  color: var(--text-muted);
+}
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 529.5px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.budget-option { 
+  border: 1.5px solid var(--border); 
+  border-radius: 22px; 
+  padding: 12px 18px; 
+  background: #fff; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  cursor: pointer; 
+}
+
+.budget-option input { 
+  display: none; 
+}
+
+.budget-option::before { 
+  content: none; 
+  display: none; 
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+}
+
+.budget-option.active { 
+  border-color: var(--brand-teal); 
+  background: rgba(0,147,130,0.08); 
+}
+
+.budget-option.active::before { 
+  border-color: var(--brand-teal); 
+  background: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset; 
+}
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 12px 18px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+.radio-options.radio-circle { 
+  gap: 20px; /* consistent horizontal spacing between items */
+}
+.radio-options.radio-circle .radio-option {
+  border: none; /* no pill border */
+  background: transparent;
+  padding: 8px 12px; /* uniform clickable area: top, left, right */
+}
+.radio-options.radio-circle .radio-option::before {
+  margin-right: 12px; /* consistent gap between circle and label */
+}
+.radio-options.radio-circle .radio-option.active {
+  background: transparent !important; /* no pill background for circle style */
+}
+.radio-options.radio-circle .radio-option::before {
+  border-color: var(--border); /* inactive circle uses default grey border */
+}
+.radio-options.radio-circle .radio-option span {
+  color: var(--text-dark); /* keep default label color when inactive */
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option.active span {
+  color: var(--brand-teal); /* label turns teal on click */
+}
+.radio-options.radio-circle .radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+}
+.radio-options.radio-circle .radio-option.disabled span {
+  color: var(--text-muted);
+}
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.budget-option { 
+  border: 1.5px solid var(--border); 
+  border-radius: 22px; 
+  padding: 12px 18px; 
+  background: #fff; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  cursor: pointer; 
+}
+
+.budget-option input { 
+  display: none; 
+}
+
+.budget-option::before { 
+  content: none; 
+  display: none; 
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+}
+
+.budget-option.active { 
+  border-color: var(--brand-teal); 
+  background: rgba(0,147,130,0.08); 
+}
+
+.budget-option.active::before { 
+  border-color: var(--brand-teal); 
+  background: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset; 
+}
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 12px 18px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+.radio-options.radio-circle { 
+  gap: 20px; /* consistent horizontal spacing between items */
+}
+.radio-options.radio-circle .radio-option {
+  border: none; /* no pill border */
+  background: transparent;
+  padding: 8px 12px; /* uniform clickable area: top, left, right */
+}
+.radio-options.radio-circle .radio-option::before {
+  margin-right: 12px; /* consistent gap between circle and label */
+}
+.radio-options.radio-circle .radio-option.active {
+  background: transparent !important; /* no pill background for circle style */
+}
+.radio-options.radio-circle .radio-option::before {
+  border-color: var(--border); /* inactive circle uses default grey border */
+}
+.radio-options.radio-circle .radio-option span {
+  color: var(--text-dark); /* keep default label color when inactive */
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option.active span {
+  color: var(--brand-teal); /* label turns teal on click */
+}
+.radio-options.radio-circle .radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+}
+.radio-options.radio-circle .radio-option.disabled span {
+  color: var(--text-muted);
+}
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Budget radio pills */
+.budget-group { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.budget-option { 
+  border: 1.5px solid var(--border); 
+  border-radius: 22px; 
+  padding: 12px 18px; 
+  background: #fff; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  cursor: pointer; 
+}
+
+.budget-option input { 
+  display: none; 
+}
+
+.budget-option::before { 
+  content: none; 
+  display: none; 
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+}
+
+.budget-option.active { 
+  border-color: var(--brand-teal); 
+  background: rgba(0,147,130,0.08); 
+}
+
+.budget-option.active::before { 
+  border-color: var(--brand-teal); 
+  background: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset; 
+}
+
+.budget-option.disabled { 
+  opacity: 0.6; 
+  pointer-events: none; 
+  filter: grayscale(12%); 
+}
+
+/* Footer */
+.form-footer { 
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 32px; 
+  max-width: unset;
+  width: 100%;
+  align-self: stretch;
+}
+
+.next-button { 
+  background: var(--brand-teal); 
+  color: #fff; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 12px 18px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.next-button .arrow { 
+  font-size: 18px; 
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .prosumer-page { 
+    grid-template-columns: 320px 1fr; 
+  }
+  
+  .sidebar {
+    padding: 40px 24px;
+  }
+  
+  .content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prosumer-page { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .sidebar { 
+    display: none; 
+  }
+  
+  .content { 
+    padding: 24px; 
+  }
+}
+
+/* Make first row fields equal width to company name field */
+.form-row.two-cols .col:first-child .form-select,
+.form-row.two-cols .col:first-child .form-input {
+  width: 100%;
+}
+
+/* Consumer Type full width like Company Name */
+.form-row .form-select { width: 100%; }
+.radio-options.radio-circle { 
+  gap: 20px; /* consistent horizontal spacing between items */
+}
+.radio-options.radio-circle .radio-option {
+  border: none; /* no pill border */
+  background: transparent;
+  padding: 8px 12px; /* uniform clickable area: top, left, right */
+}
+.radio-options.radio-circle .radio-option::before {
+  margin-right: 12px; /* consistent gap between circle and label */
+}
+.radio-options.radio-circle .radio-option.active {
+  background: transparent !important; /* no pill background for circle style */
+}
+.radio-options.radio-circle .radio-option::before {
+  border-color: var(--border); /* inactive circle uses default grey border */
+}
+.radio-options.radio-circle .radio-option span {
+  color: var(--text-dark); /* keep default label color when inactive */
+}
+.radio-options.radio-circle .radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: inset 0 0 0 3px #fff; /* white inner ring */
+}
+.radio-options.radio-circle .radio-option.active span {
+  color: var(--brand-teal); /* label turns teal on click */
+}
+.radio-options.radio-circle .radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+}
+.radio-options.radio-circle .radio-option.disabled span {
+  color: var(--text-muted);
+}
+.form-row.two-cols { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.form-label { 
+  font-size: 13px; 
+  color: var(--text-dark); 
+  font-weight: 600; 
+}
+
+.form-input, .form-select { 
+  border: 1.5px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px 14px; 
+  font-size: 14px; 
+  outline: none; 
+  background: #fff; 
+  height: 44px;
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form spacing */
+.form-grid {
+  gap: 20px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.col { width: 520px; }
+
+/* Align radio and budget groups within columns */
+.radio-options, .budget-group { width: 520px; }
+/* Radio options exact sizing */
+.radio-option input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Budget pills exact sizing */
+.budget-option {
+  height: 36px;
+  padding: 0 16px;
+}
+
+/* Next button exact sizing */
+.next-button {
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 12px;
+}
+
+.form-input:focus, .form-select:focus { 
+  border-color: var(--brand-teal); 
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12); 
+}
+
+.input-with-prefix { 
+  position: relative; 
+}
+
+.input-prefix { 
+  position: absolute; 
+  left: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 16px; 
+}
+
+.has-prefix { 
+  padding-left: 40px; 
+}
+
+/* Inline radio options (figma style) */
+.radio-options { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+/* Align Consumer Type row to the same width as a single column (520px) */
+.form-row.consumer-type {
+  width: 520px;
+  align-self: flex-start;
+}
+
+.radio-option { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: var(--text-dark); 
+  font-weight: 500; 
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio-option input { 
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  margin-right: 6px; /* consistent spacing before text */
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Remove circle indicator to match Figma pill-only design */
+.radio-option::before {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio-option.active {
+  border-color: var(--brand-teal);
+  background: rgba(0,147,130,0.08);
+}
+
+.radio-option.active::before {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 3px rgba(0,147,130,0.12) inset;
+}
+
+/* Spacing between custom indicator and text inside radio pills */
+.radio-option span { 
+  margin-left: 0; 
+  font-size: 12px; 
+}
+
+/* Disabled radio pills look muted like img2 */
+.radio-option.disabled { 
+  opacity: 1; 
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #fff;
+  pointer-events: none; 
+}
+.radio-option.disabled::before {
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Final layout: 3 pills on first row, 4th on next; active pill shows white text with radio circle inside */
+.form-label + .budget-group {
+  margin-top: 16px;
+}
+
+.budget-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 529.5px;
+}
+
+.budget-group .budget-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  height: 48px;
+  padding: 0 16px;
+  border: 2px solid #E3E3E3;
+  border-radius: 12px;
+  background: #fff;
+  color: #000;
+}
+
+.budget-group .budget-option::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #C7C7C7;
+  background: transparent;
+}
+
+.budget-group .budget-option.active {
+  background: #009382;
+  border-color: #009382;
+  color: #ffffff !important;
+}
+
+.budget-group .budget-option.active::before {
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.budget-group .budget-option.disabled {
+  color: #C7C7C7;
+  border-color: #E3E3E3;
+  background: #fff;
+  pointer-events: none;
+}
+
+/* Professional layout and sticky sidebar overrides */
+.prosumer-page {
+  height: 100vh; /* full viewport height to enable independent scrolling */
+  grid-template-columns: clamp(280px, 26vw, 464px) 1fr; /* responsive sidebar width */
+}
+
+/* Sidebar should never scroll: keep it pinned */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden; /* avoid internal scroll */
+  align-self: start; /* ensure sticky works inside grid */
+}
+
+/* Right content may scroll when necessary, keep padding responsive */
+.content {
+  height: 100vh;
+  overflow-y: auto; /* only the right column scrolls if needed */
+  padding: clamp(24px, 4vw, 64px);
+}
+
+/* Inner layout: centered and compact spacing */
+.content-inner {
+  max-width: clamp(720px, 70vw, 980px);
+  margin: 0 auto;
+  /* gap: clamp(20px, 3vw, 32px); */
+}
+
+/* Form grid spacing and responsiveness */
+.form-grid {
+  gap: clamp(16px, 2.5vw, 24px);
+  max-width: 100%;
+}
+
+.form-row.two-cols {
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.5vw, 24px);
+}
+
+.col { width: auto; }
+.radio-options, .budget-group { width: 100%; }
+
+@media (max-width: 1024px) {
+  .form-row.two-cols { grid-template-columns: 1fr; } /* stack fields on tablets */
+}
+
+/* Typography scale for header and inputs */
+.page-title { font-size: clamp(24px, 3.5vw, 32px); line-height: 1.2; }
+.page-subtitle { font-size: clamp(13px, 2vw, 16px); line-height: 1.6; }
+
+.form-input, .form-select {
+  height: clamp(40px, 5.5vw, 48px);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* Budget group responsive columns */
+.budget-group {
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  width: 100%;
+}
+
+/* Footer button */
+.next-button {
+  height: clamp(44px, 6vw, 52px);
+  padding: 0 clamp(20px, 3vw, 28px);
+  font-size: clamp(14px, 1.8vw, 16px);
+  border-radius: 10px;
+}
+
+/* Final responsive overrides: ensure fluid layout across devices */
+@media (min-width: 0px) {
+  /* Remove fixed widths in favor of fluid containers */
+  .content-inner { max-width: min(100%, 980px) !important; }
+
+  .form-row.consumer-type { width: 100% !important; }
+
+  .form-row.two-cols {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: clamp(16px, 2.5vw, 24px) !important;
+    justify-content: initial !important;
+  }
+
+  .col { width: auto !important; }
+
+  .radio-options, .budget-group { width: 100% !important; }
+
+  /* Budget options wrap gracefully with equal-width columns */
+  .budget-group {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  /* Scale illustration on large screens, keep readable on small */
+  .header-illustration { max-width: 40% !important; min-width: 220px !important; }
+}
+
+@media (max-width: 480px) {
+  .page-title { font-size: 22px !important; }
+  .page-subtitle { font-size: 13px !important; }
+  .custom-select-trigger { height: 40px !important; }
+  .next-button { width: 100% !important; justify-content: center !important; }
+}
+
+/* Sidebar responsive behavior: shrink then hide, while content expands */
+@media (max-width: 1280px) {
+  .prosumer-page { grid-template-columns: 380px 1fr !important; }
+  .sidebar { padding: 40px 32px !important; }
+}
+
+@media (max-width: 1024px) {
+  .prosumer-page { grid-template-columns: 300px 1fr !important; }
+  .sidebar { padding: 32px 24px !important; }
+  .brand img { width: 36px !important; height: 44px !important; }
+  .step-caption { font-size: 16px !important; }
+}
+
+@media (max-width: 900px) {
+  .prosumer-page { grid-template-columns: 260px 1fr !important; }
+  .sidebar { padding: 28px 20px !important; }
+}
+
+/* Hide sidebar and show mobile stepper for small screens */
+@media (max-width: 768px) {
+  .prosumer-page { grid-template-columns: 1fr !important; }
+  .sidebar { display: none !important; }
+  .content { padding: 24px !important; }
+  .mobile-stepper { display: block !important; }
+}
+
+/* Mobile stepper styles */
+.mobile-stepper { display: none; margin-bottom: 16px; }
+.mobile-stepper .mobile-stepper-track {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+.mobile-stepper .mobile-stepper-step {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+}
+.mobile-stepper .mobile-stepper-step .circle {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--light-gray) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12px !important;
+}
+.mobile-stepper .mobile-stepper-step .label { font-size: 12px !important; color: var(--text-muted) !important; }
+.mobile-stepper .mobile-stepper-step.active {
+  border-color: var(--brand-teal) !important;
+  background: rgba(0,147,130,0.06) !important;
+}
+.mobile-stepper .mobile-stepper-step.active .circle { background: var(--brand-teal) !important; }
+.mobile-stepper .mobile-stepper-step.active .label { color: var(--brand-teal) !important; font-weight: 600 !important; }

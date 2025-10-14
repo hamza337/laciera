@@ -1,0 +1,304 @@
+:root {
+  --ld-teal: #009382;
+  --ld-text: #0E0E0D;
+  --ld-muted: #9AA1A6;
+  --ld-panel: #FFFFFF;
+  --ld-border: #E3E3E3;
+  --ld-bg: #F5F7F8;
+}
+
+.ldShell { display: flex; min-height: 100vh; background: var(--ld-bg); gap: 24px; }
+.ldMain { flex: 1; display: flex; flex-direction: column; padding-top: 92px; }
+.ldContent {
+  padding: 24px 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px; /* professional readable width */
+  width: 100%;
+}
+
+.ldMetricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+/* Exact 2x2 on laptop/desktop; stack on small screens */
+@media (min-width: 0px) {
+  .ldMetricsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 768px) {
+  .ldMetricsGrid { grid-template-columns: 1fr !important; }
+}
+
+.ldPanel {
+  background: var(--ld-panel);
+  border: 2px solid var(--ld-border);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  overflow: hidden; /* avoid child overflow */
+}
+
+.ldTwoCols {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  max-width: 1200px; /* keep columns within content width */
+  width: 100%;
+}
+
+.ldHeaderRow { display: flex; align-items: center; justify-content: space-between; }
+.ldPageTitle { font-size: 20px; font-weight: 700; color: var(--ld-text); }
+.ldPageSub { font-size: 14px; color: var(--ld-muted); margin-top: 4px; }
+
+.ldMetricCard { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; min-height: 128px; }
+.ldMetricHeader { display: flex; align-items: center; justify-content: space-between; }
+.ldMetricTitle { font-weight: 600; color: var(--ld-muted); }
+.ldMetricValue { font-size: 34px; font-weight: 800; color: var(--ld-text); letter-spacing: -0.5px; }
+.ldMetricSub { font-size: 13px; color: #4AAB3D; font-weight: 600; }
+
+.ldPanel { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 16px; padding: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+.ldPanelHeader { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 2px solid var(--ld-border); margin-bottom: 10px; }
+
+.ldTabs { display: inline-flex; gap: 8px; background: #F1F3F4; border-radius: 12px; padding: 4px; }
+.ldTab { background: transparent; border: none; border-radius: 10px; padding: 8px 10px; color: var(--ld-muted); font-weight: 600; cursor: pointer; }
+.ldTabActive { background: var(--ld-panel); color: var(--ld-text); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+
+.ldGraphImage { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; }
+
+.ldTwoCols { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+
+.ldDevicesGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ldDeviceCard { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.ldDeviceRow { display: flex; align-items: center; justify-content: space-between; }
+.ldDeviceTitle { font-weight: 700; color: var(--ld-text); }
+.ldBadge { background: #E7F7F5; color: var(--ld-teal); border-radius: 10px; padding: 4px 8px; font-weight: 700; font-size: 12px; }
+.ldDeviceStatus { color: var(--ld-muted); font-weight: 600; }
+.ldDevicePower { color: var(--ld-text); font-weight: 600; }
+
+.ldLegend { display: flex; gap: 12px; padding-top: 10px; }
+.ldDot { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--ld-muted); }
+.ldDot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.ldDotGreen::before { background: #4AAB3D; }
+.ldDotOrange::before { background: #FF8C42; }
+.ldDotRed::before { background: #FF4D4F; }
+
+.ldRecommendations { display: flex; flex-direction: column; gap: 10px; }
+.ldRecoItem { display: grid; grid-template-columns: 12px 1fr auto; gap: 10px; align-items: center; background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 14px; padding: 10px; }
+.ldRecoDot { width: 8px; height: 8px; border-radius: 50%; background: var(--ld-teal); }
+.ldRecoTitle { font-weight: 700; color: var(--ld-text); }
+.ldRecoDesc { color: var(--ld-muted); }
+.ldRecoMeta { color: var(--ld-muted); font-weight: 600; }
+
+@media (max-width: 1100px) {
+  .ldMetricsGrid { grid-template-columns: repeat(2, 1fr); margin-bottom: 16px; }
+  .ldTwoCols { grid-template-columns: 1fr; }
+  .ldDevicesGrid { grid-template-columns: 1fr; }
+}
+
+/* Calendar icon button to match reference */
+.ldCalendarBtn { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 12px; padding: 6px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.ldCalendarBtn:hover { background: #F7F9FA; }
+
+/* Device card icon + progress bar */
+.ldDeviceTitleRow { display: inline-flex; align-items: center; gap: 8px; }
+.ldDeviceIcon { width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; }
+.ldProgressWrap { width: 100%; height: 6px; border-radius: 999px; background: #EFF2F3; overflow: hidden; }
+.ldProgressFill { height: 100%; border-radius: 999px; }
+
+/* Recommendations sections & menu */
+.ldRecoSectionTitle { font-weight: 700; color: var(--ld-text); opacity: 0.7; padding: 4px 2px; }
+.ldRecoMenu { background: transparent; border: none; border-radius: 8px; padding: 6px; cursor: pointer; }
+.ldRecoMenu:hover { background: #F7F9FA; }
+
+/* Metric card improvements */
+.ldMetricTitleRow { display: inline-flex; align-items: center; gap: 8px; }
+.ldTrendArrow { color: #00A693; font-weight: 700; }
+.ldSparkWrap { width: 220px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0)); border-radius: 12px; }
+
+/* Gauge overlay */
+.ldGaugeWrap { position: relative; }
+.ldGaugeImage { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.ldGaugeCenter { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+.ldGaugeValue { font-size: 22px; font-weight: 700; color: var(--ld-teal); }
+.ldGaugeLabel { font-size: 12px; color: var(--ld-muted); font-weight: 600; }
+.ldChartWrap { position: relative; padding: 8px 0; }
+.ldChartSvg { width: 100%; height: 320px; }
+.ldAxisLabel { fill: var(--ld-muted); font-size: 12px; }
+.ldLegendRow { position: absolute; left: 36px; bottom: 10px; display: flex; gap: 12px; margin-top: 0; }
+.ldLegendItem { display: inline-flex; align-items: center; gap: 6px; color: var(--ld-muted); font-weight: 600; }
+.ldLegendDot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+.ldGaugeSvg { width: 100%; height: auto; display: block; margin: 0 auto; }
+.ldGaugeWrap { display: grid; place-items: center; padding: 8px 0 0; }
+.ldGaugeCenter { position: relative; margin-top: -70px; text-align: center; }
+.ldGaugeValue { font-weight: 800; font-size: 24px; color: var(--ld-teal); }
+.ldGaugeLabel { color: var(--ld-muted); font-weight: 600; }
+.ldChartWrap { padding: 8px 0; }
+.ldChartSvg { width: 100%; height: 320px; }
+.ldAxisLabel { fill: var(--ld-muted); font-size: 12px; }
+.ldLegendRow { display: flex; gap: 12px; margin-top: 8px; }
+.ldLegendItem { display: inline-flex; align-items: center; gap: 6px; color: var(--ld-muted); font-weight: 600; }
+.ldLegendDot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* Reports page specific styles */
+.ldFilterSelect { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 10px; padding: 8px 10px; color: var(--ld-text); font-weight: 600; cursor: pointer; }
+.ldFilterSelect:focus { outline: none; box-shadow: 0 0 0 3px rgba(0, 147, 130, 0.15); }
+
+.ldMetricIcon { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Table styling */
+.ldTable { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 12px; overflow: hidden; }
+.ldTable thead th { text-align: left; padding: 10px 12px; background: #F7F9FA; color: var(--ld-muted); font-weight: 700; border-bottom: 2px solid var(--ld-border); }
+.ldTable tbody td { padding: 10px 12px; border-bottom: 1px solid #EFEFEF; color: var(--ld-text); }
+.ldTable tbody tr:last-child td { border-bottom: none; }
+.ldTableWrapper { width: 100%; overflow-x: auto; }
+
+/* Summary list */
+.ldSummaryList { display: flex; flex-direction: column; gap: 10px; }
+.ldSummaryItem { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; }
+.ldSummaryLabel { color: var(--ld-muted); font-weight: 700; }
+.ldSummaryValue { color: var(--ld-text); font-weight: 800; }
+.ldSummaryDesc { color: var(--ld-muted); font-weight: 600; }
+
+/* Device status overview */
+.ldStatusList { display: flex; flex-direction: column; gap: 10px; }
+.ldStatusItem { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 12px; }
+.ldStatusLabel { font-weight: 700; color: var(--ld-text); }
+
+/* Distribution bar */
+.ldDistributionWrap { display: flex; flex-direction: column; gap: 10px; }
+.ldDistributionBar { width: 100%; height: 16px; border-radius: 999px; background: #EFF2F3; overflow: hidden; display: flex; }
+.ldDistributionSegment { height: 100%; }
+.ldDistributionGreen { background: #4AAB3D; }
+.ldDistributionYellow { background: #FF8C42; }
+.ldDistributionRed { background: #FF4D4F; }
+.ldDistributionMeta { display: flex; align-items: center; justify-content: space-between; color: var(--ld-muted); font-weight: 600; }
+
+/* Right column stack for Reports */
+.ldRightColStack { display: flex; flex-direction: column; gap: 16px; }
+
+@media (max-width: 900px) {
+  .ldTable thead th, .ldTable tbody td { padding: 8px 10px; }
+  .ldSummaryItem { padding: 6px 0; }
+}
+
+@media (max-width: 600px) {
+  .ldDistributionMeta { flex-direction: column; gap: 6px; align-items: flex-start; }
+}
+
+/* Settings page layout */
+.setLayout { display: grid; grid-template-columns: 240px 1fr; gap: 20px; }
+.setSidebar { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 16px; padding: 12px; }
+.setNavList { display: flex; flex-direction: column; gap: 6px; }
+.setNavItem { width: 100%; text-align: left; background: transparent; border: none; padding: 10px 12px; border-radius: 10px; color: var(--ld-text); font-weight: 700; cursor: pointer; }
+.setNavItem:hover { background: #F1F3F4; }
+.setNavActive { background: #E7F7F5; color: var(--ld-teal); }
+.setContent { display: flex; flex-direction: column; gap: 16px; }
+
+/* Form blocks */
+.setFormHeader { display: flex; flex-direction: column; gap: 6px; }
+.setFormTitle { font-weight: 800; color: var(--ld-text); }
+.setFormSub { color: var(--ld-muted); }
+.setFormGrid { display: flex; flex-direction: column; gap: 14px; }
+.setRow { display: flex; flex-direction: column; gap: 8px; }
+.setTwoCols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.setLabel { font-weight: 700; color: var(--ld-text); }
+.setInput { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 10px; padding: 10px; color: var(--ld-text); }
+
+/* Phone input */
+.setPhoneWrap { display: flex; align-items: center; gap: 8px; background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 10px; padding: 8px 10px; }
+.setPhoneCountry { display: inline-flex; align-items: center; gap: 6px; color: var(--ld-text); font-weight: 700; }
+.setPhoneInput { flex: 1; border: none; outline: none; font-size: 14px; color: var(--ld-text); }
+
+/* Radio and segmented options */
+.setRadioGroup { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.setRadioOption { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border: 2px solid var(--ld-border); border-radius: 999px; color: var(--ld-muted); font-weight: 700; cursor: pointer; }
+.setRadioActive { color: var(--ld-teal); border-color: var(--ld-teal); background: #E7F7F5; }
+.setBudgetGroup { display: flex; gap: 8px; flex-wrap: wrap; }
+.setBudgetBtn { padding: 10px 12px; border: 2px solid var(--ld-border); border-radius: 12px; background: var(--ld-panel); color: var(--ld-muted); font-weight: 700; cursor: pointer; }
+.setBudgetActive { background: #009382; color: #fff; border-color: #009382; }
+
+/* Footer actions */
+.setActions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding-top: 8px; border-top: 2px solid var(--ld-border); margin-top: 8px; }
+.setBtn { background: var(--ld-panel); border: 2px solid var(--ld-border); border-radius: 12px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+.setCancel { color: var(--ld-text); }
+.setSave { background: #009382; border-color: #009382; color: #fff; }
+
+@media (max-width: 1100px) {
+  .setLayout { grid-template-columns: 1fr; }
+}
+@media (max-width: 800px) {
+  .setTwoCols { grid-template-columns: 1fr; }
+}
+
+/* polish metric cards and panels for professional look */
+.ldMetricCard {
+  transition: box-shadow 0.2s ease, transform 0.08s ease;
+}
+.ldMetricCard:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.ldPanel {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.ldPanel:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  border-color: #E0E5EA;
+}
+
+.ldTab { transition: background 0.2s ease, color 0.2s ease; }
+.ldTabActive { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+.ldDevicesGrid { align-items: stretch; }
+.ldDeviceCard { transition: box-shadow 0.2s ease, transform 0.08s ease; }
+.ldDeviceCard:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.08); transform: translateY(-1px); }
+
+/* subtle separators */
+.ldPanelHeader { border-bottom: 1.5px solid #E7EAEC; }
+
+/* Responsive overrides: fluid grids and scalable charts */
+@media (min-width: 0px) {
+  .ldContent { max-width: min(100%, 1200px) !important; padding: 24px !important; margin: 0 auto !important; }
+  .ldMetricsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .ldTwoCols { grid-template-columns: 2fr 1fr !important; }
+  .ldDevicesGrid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important; }
+  .ldChartSvg { height: clamp(220px, 40vw, 320px) !important; }
+  .ldGaugeSvg { max-width: 460px !important; }
+}
+
+@media (max-width: 1100px) {
+  .ldTwoCols { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 840px) {
+  .ldLegendRow { position: static !important; left: 0 !important; bottom: auto !important; margin-top: 8px !important; }
+}
+
+@media (max-width: 640px) {
+  .ldContent { padding: 16px !important; max-width: 680px !important; }
+  .ldPageTitle { font-size: 18px !important; }
+  .ldPageSub { font-size: 12px !important; }
+  .ldMetricsGrid { gap: 12px !important; }
+  .ldMetricCard { padding: 12px !important; border-radius: 14px !important; }
+  .ldMetricValue { font-size: 20px !important; }
+  .ldPanel { padding: 12px !important; border-radius: 14px !important; }
+  .ldSparkWrap { width: 120px !important; }
+  .ldGaugeCenter { margin-top: -54px !important; }
+  .ldLegend { flex-wrap: wrap !important; }
+}
+
+/* Ensure single-column layout just below tablet (<= 769px) */
+@media (max-width: 769px) {
+  .ldMetricsGrid { grid-template-columns: 1fr !important; }
+  .ldTwoCols { grid-template-columns: 1fr !important; }
+  .ldDevicesGrid { grid-template-columns: 1fr !important; }
+}
+.ldMetricRow { display: inline-flex; align-items: baseline; gap: 10px; }
+.ldMetricValue { font-size: 22px; font-weight: 700; color: var(--ld-text); }
+.ldMetricSub { font-size: 13px; color: #4AAB3D; font-weight: 600; }
