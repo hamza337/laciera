@@ -16,7 +16,7 @@ function BuildingInfoApp() {
   const [yearOfConstruction, setYearOfConstruction] = useState('2011-2020');
   const [householdSize, setHouseholdSize] = useState('5');
   const [province, setProvince] = useState('Drenthe');
-  const [address, setAddress] = useState('Zonnestraat 45A, 1053 CD Amsterdam, Netherlands');
+  const [address, setAddress] = useState('Zonnestraat 45A, 1053 CD');
   const [bemsInstalled, setBemsInstalled] = useState('Yes');
   const [smartMeterInstalled, setSmartMeterInstalled] = useState('Yes');
   const [energySupplier, setEnergySupplier] = useState('Aurora Energy');
@@ -56,7 +56,7 @@ function BuildingInfoApp() {
       <div className={layoutStyles.ldHeaderRow}>
         <div>
           <h2 className={layoutStyles.ldPageTitle}>Building Information</h2>
-          <p className={layoutStyles.ldPageSub}>View and manage your building & installation information</p>
+          {/* <p className={layoutStyles.ldPageSub}>View and manage your building & installation information</p> */}
         </div>
         <div className={styles.headerActions}>
           <button className={styles.editBtn} onClick={() => setIsModalOpen(true)} aria-label="Edit Building Information">Edit</button>

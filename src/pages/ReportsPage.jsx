@@ -1,5 +1,5 @@
 import React from 'react';
-import layoutStyles from './IsolatedDashboard.module.css';
+import styles from './ReportsPage.module.css';
 
 const IconSaving = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -33,10 +33,10 @@ const ReportsPage = () => {
   const [selectedMonth] = React.useState(monthOptions[0]);
 
   const metrics = [
-    { title: 'Monthly Saving', value: '$ 500', icon: <IconSaving /> },
-    { title: 'Self Consumption', value: '68 %', icon: <IconSun /> },
-    { title: 'Shifted (kWh)', value: '140 kWh', icon: <IconPlug /> },
-    { title: 'Peak Reduction', value: '1.5 kVA', icon: <IconChart /> },
+    { title: 'Monthly Saving', value: '$ 500', icon: '/card1.png' },
+    { title: 'Self Consumption', value: '68 %', icon: '/card2.png' },
+    { title: 'Shifted (kWh)', value: '140 kWh', icon: '/card3.png' },
+    { title: 'Peak Reduction', value: '1.5 kVA', icon: '/card4.png' },
   ];
 
   const tableData = [
@@ -54,14 +54,13 @@ const ReportsPage = () => {
   const dist = { normal: 60, medium: 25, high: 15 };
 
   return (
-    <section className={layoutStyles.ldContent}>
-      <div className={layoutStyles.ldHeaderRow}>
+    <section className={styles.rpContent}>
+      <div className={styles.rpHeader}>
         <div>
-          <h2 className={layoutStyles.ldPageTitle}>Reports</h2>
-          <p className={layoutStyles.ldPageSub}>Monthly energy analytics and insights</p>
+          <h2 className={styles.rpTitle}>Reports</h2>
         </div>
         <div>
-          <select className={layoutStyles.ldFilterSelect} aria-label="Select month">
+          <select className={styles.rpMonthSelect} aria-label="Select month">
             {monthOptions.map((m) => (
               <option key={m} value={m} defaultValue={m === selectedMonth ? m : undefined}>{m}</option>
             ))}
@@ -70,31 +69,33 @@ const ReportsPage = () => {
       </div>
 
       {/* Monthly Energy Data */}
-      <div className={layoutStyles.ldPanel}>
-        <div className={layoutStyles.ldPanelHeader}>
-          <span>Monthly Energy Data</span>
+      <div>
+        <div className={styles.rpSectionTitle}>
+          Monthly Energy Data
         </div>
-        <div className={layoutStyles.ldMetricsGrid}>
+        <div className={styles.rpMetricsGrid}>
           {metrics.map((m) => (
-            <div key={m.title} className={layoutStyles.ldMetricCard}>
-              <div className={layoutStyles.ldMetricHeader}>
-                <span className={layoutStyles.ldMetricTitle}>{m.title}</span>
-                <span className={layoutStyles.ldMetricIcon}>{m.icon}</span>
+            <div key={m.title} className={styles.rpMetricCard}>
+              <div className={styles.rpMetricRow}>
+                <div className={styles.rpMetricCol}>
+                  <div className={styles.rpMetricTitle}>{m.title}</div>
+                  <div className={styles.rpMetricValue}>{m.value}</div>
+                </div>
+                <img className={styles.rpMetricIcon} src={m.icon} alt="Report Icons" />
               </div>
-              <div className={layoutStyles.ldMetricValue}>{m.value}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className={layoutStyles.ldTwoCols}>
+      <div className={styles.rpTwoCols}>
         {/* Left column */}
-        <div className={layoutStyles.ldPanel}>
-          <div className={layoutStyles.ldPanelHeader}>
-            <span>Total Energy Flow and Usage (kWh)</span>
+        <div className={styles.rpPanel}>
+          <div className={styles.rpPanelHeader}>
+            Total Energy Flow and Usage (kWh)
           </div>
-          <div className={layoutStyles.ldTableWrapper}>
-            <table className={layoutStyles.ldTable}>
+          <div className={styles.rpTableWrapper}>
+            <table className={styles.rpTable}>
               <thead>
                 <tr>
                   <th>Days</th>
@@ -117,107 +118,109 @@ const ReportsPage = () => {
               </tbody>
             </table>
           </div>
-          <div className={layoutStyles.ldLegendRow}>
-            <span className={layoutStyles.ldLegendItem}><span className={layoutStyles.ldLegendDot} style={{ background: '#FF8C42' }} />Peak day: {peakDay}</span>
-            <span className={layoutStyles.ldLegendItem}><span className={layoutStyles.ldLegendDot} style={{ background: '#4AAB3D' }} />Lowest Day: {lowestDay}</span>
+          <div className={styles.rpLegend}>
+            <span className={styles.rpLegendItem}><span className={styles.rpLegendDot} style={{ background: '#FF5832' }} />Peak day: {peakDay}</span>
+            <span className={styles.rpLegendItem}><span className={styles.rpLegendDot} style={{ background: '#65A5FF' }} />Lowest Day: {lowestDay}</span>
           </div>
         </div>
 
         {/* Right column */}
-        <div className={layoutStyles.ldRightColStack}>
-          <div className={layoutStyles.ldPanel}>
-            <div className={layoutStyles.ldPanelHeader}><span>Key Metrics Summary</span></div>
-            <div className={layoutStyles.ldSummaryList}>
-              <div className={layoutStyles.ldSummaryItem}>
-                <span className={layoutStyles.ldSummaryLabel}>Total Current Load</span>
-                <span className={layoutStyles.ldSummaryValue}>55.8kW</span>
+        <div className={styles.rpRightStack}>
+          <div className={styles.rpPanel}>
+            <div className={styles.rpPanelHeader}>Key Metrics Summary</div>
+            <div className={styles.rpSummaryList}>
+              <div className={styles.rpSummaryItem}>
+                <span className={styles.rpSummaryLabel}>Total Current Load</span>
+                <span className={styles.rpSummaryValue}>55.8kW</span>
               </div>
-              <div className={layoutStyles.ldSummaryItem}>
-                <span className={layoutStyles.ldSummaryLabel}>Total CO2 Reduction</span>
-                <span className={layoutStyles.ldSummaryValue}>80.2t</span>
+              <div className={styles.rpSummaryItem}>
+                <span className={styles.rpSummaryLabel}>Total CO2 Reduction</span>
+                <span className={styles.rpSummaryValue}>80.2t</span>
               </div>
-              <div className={layoutStyles.ldSummaryItem}>
-                <span className={layoutStyles.ldSummaryLabel}>Avg. Energy Price</span>
-                <span className={layoutStyles.ldSummaryValue}>$25/Unit</span>
+              <div className={styles.rpSummaryItem}>
+                <span className={styles.rpSummaryLabel}>Avg. Energy Price</span>
+                <span className={styles.rpSummaryValue}>$25/Unit</span>
               </div>
             </div>
           </div>
 
-          <div className={layoutStyles.ldPanel}>
-            <div className={layoutStyles.ldPanelHeader}><span>Device Status Overview</span></div>
-            <div className={layoutStyles.ldStatusList}>
-              <div className={layoutStyles.ldStatusItem}>
-                <span className={layoutStyles.ldStatusLabel}>Solar Panels (4.5 KW)</span>
-                <span className={layoutStyles.ldBadge}>Active</span>
+          <div className={styles.rpPanel}>
+            <div className={styles.rpPanelHeader}>Device Status Overview</div>
+            <div className={styles.rpStatusList}>
+              <div className={styles.rpStatusItem}>
+                <span className={styles.rpStatusLabel}>Solar Panels (4.5 KW)</span>
+                <span className={styles.rpBadge}>Active</span>
               </div>
-              <div className={layoutStyles.ldStatusItem}>
-                <span className={layoutStyles.ldStatusLabel}>Home Battery (4.5 KW)</span>
-                <span className={layoutStyles.ldBadge}>Active</span>
+              <div className={styles.rpStatusItem}>
+                <span className={styles.rpStatusLabel}>Home Battery (4.5 KW)</span>
+                <span className={styles.rpBadge}>Active</span>
               </div>
-              <div className={layoutStyles.ldStatusItem}>
-                <span className={layoutStyles.ldStatusLabel}>EV Charger (4.5 KW)</span>
-                <span className={layoutStyles.ldBadge}>Active</span>
+              <div className={styles.rpStatusItem}>
+                <span className={styles.rpStatusLabel}>EV Charger (4.5 KW)</span>
+                <span className={styles.rpBadge}>Active</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Distribution & Recommendations */}
-      <div className={layoutStyles.ldTwoCols}>
-        <div className={layoutStyles.ldPanel}>
-          <div className={layoutStyles.ldPanelHeader}><span>Energy Consumption Distribution</span></div>
-          <div className={layoutStyles.ldDistributionWrap}>
-            <div className={layoutStyles.ldDistributionBar}>
-              <div className={`${layoutStyles.ldDistributionSegment} ${layoutStyles.ldDistributionGreen}`} style={{ width: `${dist.normal}%` }} />
-              <div className={`${layoutStyles.ldDistributionSegment} ${layoutStyles.ldDistributionYellow}`} style={{ width: `${dist.medium}%` }} />
-              <div className={`${layoutStyles.ldDistributionSegment} ${layoutStyles.ldDistributionRed}`} style={{ width: `${dist.high}%` }} />
-            </div>
-            <div className={layoutStyles.ldDistributionMeta}>
-              <span>Normal {dist.normal}%</span>
-              <span>Medium {dist.medium}%</span>
-              <span>High {dist.high}%</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={layoutStyles.ldPanel}>
-          <div className={layoutStyles.ldPanelHeader}><span>Performance Summary</span></div>
-          <div className={layoutStyles.ldSummaryList}>
-            <div className={layoutStyles.ldSummaryItem}>
-              <span className={layoutStyles.ldSummaryLabel}>Energy Optimization :</span>
-              <span className={layoutStyles.ldSummaryDesc}>Successfully shifted 140 kWh to lower-cost periods</span>
-            </div>
-            <div className={layoutStyles.ldSummaryItem}>
-              <span className={layoutStyles.ldSummaryLabel}>Grid Efficiency :</span>
-              <span className={layoutStyles.ldSummaryDesc}>Achieved 68% Self-consumption rate</span>
-            </div>
-            <div className={layoutStyles.ldSummaryItem}>
-              <span className={layoutStyles.ldSummaryLabel}>Financial Impact :</span>
-              <span className={layoutStyles.ldSummaryDesc}>Total saving of $500 this month</span>
-            </div>
-            <div className={layoutStyles.ldSummaryItem}>
-              <span className={layoutStyles.ldSummaryLabel}>Peak Management :</span>
-              <span className={layoutStyles.ldSummaryDesc}>Reduced Peak demand by 1.5 kVA</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* AI Recommendations */}
-      <div className={layoutStyles.ldPanel}>
-        <div className={layoutStyles.ldPanelHeader}><span>Top AI Recommendation For You</span></div>
-        <div className={layoutStyles.ldRecommendations}>
-          {[1, 2].map((i) => (
-            <div key={i} className={layoutStyles.ldRecoItem}>
-              <span className={layoutStyles.ldRecoDot} />
-              <div>
-                <div className={layoutStyles.ldRecoTitle}>Optimize EV Charging</div>
-                <div className={layoutStyles.ldRecoDesc}>Shift EV Charging to 11 PM - 6 AM to save $50/month on electricity costs</div>
+      {/* Distribution (left) + Performance (right). Left stacks Distribution + AI */}
+      <div className={styles.rpTwoCols}>
+        <div className={styles.rpLeftStack}>
+          <div className={styles.rpPanel}>
+            <div className={styles.rpPanelHeader}>Energy Consumption Distribution</div>
+            <div className={styles.rpDistributionWrap}>
+              <div className={styles.rpDistributionBar}>
+                <div className={`${styles.rpDistributionSegment} ${styles.rpDistributionGreen}`} style={{ width: `${dist.normal}%` }} />
+                <div className={`${styles.rpDistributionSegment} ${styles.rpDistributionYellow}`} style={{ width: `${dist.medium}%` }} />
+                <div className={`${styles.rpDistributionSegment} ${styles.rpDistributionRed}`} style={{ width: `${dist.high}%` }} />
               </div>
-              <div className={layoutStyles.ldRecoMeta}>1hr ago</div>
+              <div className={styles.rpDistributionMeta}>
+                <span>Normal {dist.normal}%</span>
+                <span>Medium {dist.medium}%</span>
+                <span>High {dist.high}%</span>
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div className={styles.rpPanel + ' ' + styles.rpPanelAi}>
+            <div className={styles.rpPanelHeader}>Top AI Recommendation For You</div>
+            <div className={styles.rpRecommendations}>
+              {[1, 2].map((i) => (
+                <div key={i} className={styles.rpRecoItem}>
+                  {/* <span className={styles.rpRecoDot} /> */}
+                  <img src="/ai.png" alt="/ai.png" />
+                  <div className={styles.rpRecoContent}>
+                    <div className={styles.rpRecoTitle}>Optimize EV Charging</div>
+                    <div className={styles.rpRecoDesc}>Shift EV Charging to 11 PM - 6 AM to save $50/month on electricity costs</div>
+                  </div>
+                  <div className={styles.rpRecoMeta}>1hr ago</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.rpPanel}>
+          <div className={styles.rpPanelHeader}>Performance Summary</div>
+          <div className={styles.rpSummaryList}>
+            <div className={styles.rpSummaryItem}>
+              <span className={styles.rpSummaryLabel}>Energy Optimization :</span>
+              <span className={styles.rpSummaryDesc}>Successfully shifted 140 kWh to lower-cost periods</span>
+            </div>
+            <div className={styles.rpSummaryItem}>
+              <span className={styles.rpSummaryLabel}>Grid Efficiency :</span>
+              <span className={styles.rpSummaryDesc}>Achieved 68% Self-consumption rate</span>
+            </div>
+            <div className={styles.rpSummaryItem}>
+              <span className={styles.rpSummaryLabel}>Financial Impact :</span>
+              <span className={styles.rpSummaryDesc}>Total saving of $500 this month</span>
+            </div>
+            <div className={styles.rpSummaryItem}>
+              <span className={styles.rpSummaryLabel}>Peak Management :</span>
+              <span className={styles.rpSummaryDesc}>Reduced Peak demand by 1.5 kVA</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

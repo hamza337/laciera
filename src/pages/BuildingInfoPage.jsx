@@ -12,7 +12,7 @@ function BuildingInfoPage() {
   const [yearOfConstruction, setYearOfConstruction] = useState('2011-2020');
   const [householdSize, setHouseholdSize] = useState('5');
   const [province, setProvince] = useState('Drenthe');
-  const [address, setAddress] = useState('Zonnestraat 45A, 1053 CD Amsterdam, Netherlands');
+  const [address, setAddress] = useState('Zonnestraat 45A, 1053 CD');
   const [bemsInstalled, setBemsInstalled] = useState('Yes');
   const [smartMeterInstalled, setSmartMeterInstalled] = useState('Yes');
   const [energySupplier, setEnergySupplier] = useState('Aurora Energy');
