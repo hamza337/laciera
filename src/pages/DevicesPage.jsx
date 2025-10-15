@@ -87,30 +87,17 @@ const DevicesPage = () => {
 
   return (
     <section className={layoutStyles.ldContent}>
-      <div className={layoutStyles.ldHeaderRow}>
-        <div>
+      <div style={{borderBottom: '1px solid #E3E3E3', paddingBottom: '16px'}} className={layoutStyles.ldHeaderRow}>
+        {/* <div> */}
           <h2 className={layoutStyles.ldPageTitle}>Devices</h2>
-          <p className={layoutStyles.ldPageSub}>Manage and monitor your devices</p>
-        </div>
+        {/* </div> */}
         <button className={styles.addBtn} onClick={onOpenModal} aria-label="Add New Device">+ Add New Device</button>
       </div>
 
-      <div className={layoutStyles.ldPanel}>
-        <div className={layoutStyles.ldPanelHeader}>
-          <span>Devices</span>
-          {!hasAnyDevice && (
-            <span className={styles.subtitle}>No devices added yet</span>
-          )}
-        </div>
-
+      <div>
         {!hasAnyDevice ? (
-          <div className={styles.emptyWrap}>
-            <svg className={styles.emptyIcon} viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="14" y="22" width="152" height="76" rx="12" fill="#F1F5F9" stroke="#E6EBF0" />
-              <circle cx="60" cy="60" r="24" fill="#E9F7F4" stroke="#A6E4DC" />
-              <path d="M60 48l6 12H54l6-12z" fill="#00A693" />
-              <rect x="98" y="48" width="40" height="24" rx="6" fill="#E9EEF3" />
-            </svg>
+          <div className={styles.dvxEmptyWrap}>
+            <img className={styles.dvxEmptyImg} src="/noData.png" alt="No Device Available" />
             <div className={styles.emptyTitle}>No devices available</div>
             <div className={styles.emptyDesc}>Add your devices by clicking on Add New Device</div>
             <button className={styles.addBtn} onClick={onOpenModal}>+ Add New Device</button>
@@ -124,15 +111,14 @@ const DevicesPage = () => {
                   <div className={styles.deviceInfo} style={{ padding: 8 }}>No devices in this category</div>
                 ) : (
                   (devicesByCategory[cat] || []).map((dev, idx) => (
-                    <div className={styles.deviceCard} key={`${dev.name}-${idx}`}>
-                      <div className={styles.deviceHeader}>
-                        <div className={styles.deviceTitleRow}>
-                          <div className={styles.iconBox} aria-hidden="true">{String(dev.name || 'D').slice(0, 1)}</div>
-                          <div>
-                            <div className={styles.deviceName}>{dev.name}</div>
-                            <div className={styles.deviceInfo}>Qty: {dev.qty || 0}{dev.power ? ` · ${dev.power}` : ''}{dev.energyLabel ? ` · Label ${dev.energyLabel}` : ''}</div>
-                          </div>
-                        </div>
+                    <div className={styles.dvxCard} key={`${dev.name}-${idx}`}>
+                      <div className={styles.dvxTopRow}>
+                        <div className={styles.dvxIcon} aria-hidden="true">{String(dev.name || 'D').slice(0, 1)}</div>
+                        <div className={styles.dvxName}>{dev.name}</div>
+                      </div>
+                      <div className={styles.dvxDivider} />
+                      <div className={styles.dvxBottomRow}>
+                        <div className={styles.dvxQty}>Quantity : {dev.qty || 0}</div>
                         <div
                           className={`${styles.toggle} ${dev.active ? styles.toggleOn : ''}`}
                           onClick={() => toggleDevice(cat, idx)}
@@ -142,20 +128,10 @@ const DevicesPage = () => {
                         >
                           <div className={`${styles.knob} ${dev.active ? styles.knobOn : ''}`} />
                         </div>
-                      </div>
-                      <div className={styles.deviceControls}>
-                        <div className={styles.qtyRow}>
-                          <button className={styles.qtyBtn} onClick={() => changeQty(cat, idx, -1)} aria-label="Decrease quantity">−</button>
-                          <input
-                            className={styles.qtyInput}
-                            type="number"
-                            min={0}
-                            value={dev.qty || 0}
-                            onChange={(e) => changeQty(cat, idx, (Number(e.target.value) || 0) - (dev.qty || 0))}
-                            aria-label="Quantity"
-                          />
-                          <button className={styles.qtyBtn} onClick={() => changeQty(cat, idx, 1)} aria-label="Increase quantity">+</button>
-                        </div>
+                        <div className={styles.dvxVSep} aria-hidden="true" />
+                        <button className={styles.dvxMenuBtn} aria-label={`${dev.name} menu`}>
+                          <span aria-hidden>⋮</span>
+                        </button>
                       </div>
                     </div>
                   ))
@@ -208,16 +184,20 @@ const DevicesPage = () => {
 
               <div className={styles.formRow}>
                 <div className={styles.formField}>
+                  <label className={styles.label}>Unit</label>
+                  <select className={styles.select} value={form.energyLabel} onChange={(e) => onChangeField('energyLabel', e.target.value)}>
+                    {['Kv', 'Kva', 'Watt'].map((l) => (
+                      <option key={l} value={l}>{l}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className={styles.formField}>
                   <label className={styles.label}>Energy Label</label>
                   <select className={styles.select} value={form.energyLabel} onChange={(e) => onChangeField('energyLabel', e.target.value)}>
                     {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((l) => (
                       <option key={l} value={l}>{l}</option>
                     ))}
                   </select>
-                </div>
-                <div className={styles.formField}>
-                  <label className={styles.label}>Line</label>
-                  <input className={styles.input} value={form.line} onChange={(e) => onChangeField('line', e.target.value)} placeholder="e.g., Home" />
                 </div>
               </div>
 

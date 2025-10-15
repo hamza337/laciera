@@ -24,10 +24,17 @@
 
 .panel { background: var(--dv-bg); border: 1px solid var(--dv-border); border-radius: 16px; padding: 14px; }
 
-.emptyWrap { display: grid; place-items: center; padding: 40px 16px; color: var(--dv-muted); }
+.emptyWrap { display: grid; place-items: center; padding: 40px 16px; color: var(--dv-muted); gap: 15px; }
 .emptyIcon { width: 120px; height: 80px; opacity: 0.8; }
 .emptyTitle { margin-top: 16px; font-weight: 600; color: var(--dv-text); }
 .emptyDesc { margin-top: 4px; font-size: 14px; }
+
+/* DevicesPage specific responsive empty state (unique classes) */
+.dvxEmptyWrap { display: grid; place-items: center; padding: 56px 16px; gap: 16px; text-align: center; }
+.dvxEmptyImg { width: clamp(160px, 40vw, 260px); height: auto; object-fit: contain; }
+@media (max-width: 540px) {
+  .dvxEmptyWrap { padding: 36px 12px; }
+}
 
 .columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 @media (max-width: 1200px) { .columns { grid-template-columns: repeat(3, 1fr); } }
@@ -54,6 +61,19 @@
 .toggleOn { background: #CCF1EC; border-color: #A6E4DC; }
 .knob { position: absolute; top: 50%; transform: translateY(-50%); left: 4px; width: 20px; height: 20px; border-radius: 20px; background:#fff; box-shadow: 0 1px 2px rgba(0,0,0,0.12); transition: left 160ms ease; }
 .knobOn { left: 24px; }
+
+/* New unique card layout to match requested design */
+.dvxCard { border: 1px solid var(--dv-border); border-radius: 14px; background: var(--dv-bg); padding: 12px; display: grid; gap: 10px; box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
+.dvxTopRow { display: grid; grid-template-columns: 40px 1fr; align-items: center; gap: 10px; }
+.dvxIcon { width: 40px; height: 40px; border-radius: 12px; background: #F2F8F7; color: #0D9888; display: grid; place-items: center; font-weight: 700; }
+.dvxName { font-weight: 600; color: var(--dv-text); font-size: 15px; }
+.dvxDivider { height: 1px; background: #E3E7EB; }
+.dvxBottomRow { display: grid; grid-template-columns: 1fr max-content 1px max-content; align-items: center; gap: 12px; }
+.dvxQty { color: var(--dv-text); font-weight: 500; }
+.dvxVSep { width: 1px; height: 24px; background: #E3E7EB; }
+.dvxMenuBtn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--dv-border); background: var(--dv-bg); display: grid; place-items: center; cursor: pointer; color: #6B7176; }
+.dvxMenuBtn:hover { background: #F7F9FA; }
+.dvxSwitch { position: relative; }
 
 /* Modal */
 .modalOverlay { position: fixed; inset: 0; background: rgba(14,14,13,0.32); display: grid; place-items: center; z-index: 2000; padding: 16px; }

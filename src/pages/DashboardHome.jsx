@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import styles from './IsolatedDashboard.module.css';
 
-// Real SVG line chart that matches the reference (legend + axes)
+// Real SVG line chart that matches the reference (legend + axes + titles)
 const EnergyFlowChart = ({ data }) => {
   const width = 760;
   const height = 300;
@@ -25,11 +25,19 @@ const EnergyFlowChart = ({ data }) => {
 
   return (
     <div className={styles.ldChartWrap}>
+      <div className={styles.ldLegendTop}>
+        {data.series.map((s) => (
+          <div key={`legend-${s.name}`} className={styles.ldLegendItem}>
+            <span className={styles.ldLegendDot} style={{ background: s.color }}></span>
+            {s.name}
+          </div>
+        ))}
+      </div>
       <svg className={styles.ldChartSvg} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
-        {/* Grid background */}
+        {/* Grid background (dotted) */}
         {gridLines.map((g) => {
           const y = pad + yScale(g);
-          return <line key={`gy-${g}`} x1={pad} y1={y} x2={width - pad} y2={y} stroke="#E7EAEC" strokeWidth="1" />;
+          return <line key={`gy-${g}`} x1={pad} y1={y} x2={width - pad} y2={y} stroke="#E7EAEC" strokeWidth="1" strokeDasharray="3 6" />;
         })}
 
         {/* Y-axis labels */}
@@ -45,20 +53,15 @@ const EnergyFlowChart = ({ data }) => {
           <text key={`xl-${label}`} x={pad + i * xStep} y={height - pad + 20} className={styles.ldAxisLabel}>{label}</text>
         ))}
 
+        {/* Axis titles */}
+        <text x={width / 2} y={height - 2} className={styles.ldAxisTitle} textAnchor="middle">Days</text>
+        <text x={10} y={height / 2} className={styles.ldAxisTitle} textAnchor="middle" transform={`rotate(-90 10 ${height/2})`}>Energy (kWh)</text>
+
         {/* Series lines */}
         {data.series.map((s) => (
           <path key={s.name} d={toPath(s.values)} stroke={s.color} strokeWidth="2.5" fill="none" strokeLinecap="round" />
         ))}
       </svg>
-
-      <div className={styles.ldLegendRow}>
-        {data.series.map((s) => (
-          <div key={`legend-${s.name}`} className={styles.ldLegendItem}>
-            <span className={styles.ldLegendDot} style={{ background: s.color }}></span>
-            {s.name}
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
@@ -115,40 +118,52 @@ const DeviceCard = ({ title, status, power, accent, efficiency = 95, icon = null
   </div>
 );
 
-// Segmented SVG gauge to match the reference
+// Segmented tick SVG gauge with inner dotted arc
 const Gauge = () => {
   const width = 360;
-  const height = 240;
+  const height = 200; // tighter viewBox to remove extra whitespace
   const cx = width / 2;
-  const cy = height * 0.95;
-  const r = 96;
-  const segments = 24;
+  const cy = height * 0.86; // move arc up a bit
+  const rOuter = 92;
+  const rInner = 78;
+  const ticks = 60; // many thin ticks to mimic image
   const startAngle = -180;
   const endAngle = 0;
-  const step = (endAngle - startAngle) / segments;
-  const colors = [
-    '#4AAB3D','#4AAB3D','#4AAB3D','#62B93E','#7BC53F','#94D141','#ADEE43',
-    '#F7AE1B','#F7AE1B','#FFC04D','#FF9A4D','#FF8C42',
-    '#FF7A36','#FF6B2B','#FF5C23','#FF4D1B','#FF4D4F','#FF4D4F','#FF3C3C','#FF3030','#FF2626','#FF1C1C','#FF1212','#FF0A0A'
-  ];
-  const polar = (angleDeg) => {
-    // Map angles directly: -180 (left) -> -90 (top) -> 0 (right)
-    const a = angleDeg * Math.PI / 180.0;
-    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  const step = (endAngle - startAngle) / ticks;
+
+  const colorFor = (i) => {
+    const t = i / (ticks - 1);
+    if (t < 0.55) return '#0D9888'; // green
+    if (t < 0.78) return '#F7AE1B'; // yellow
+    return '#FF4D4F'; // red
   };
-  const arcs = new Array(segments).fill(0).map((_, i) => {
-    const a1 = startAngle + i * step;
-    const a2 = a1 + step * 0.92;
-    const p1 = polar(a1);
-    const p2 = polar(a2);
-    const d = `M ${p1.x} ${p1.y} A ${r} ${r} 0 0 1 ${p2.x} ${p2.y}`;
-    return { d, color: colors[i % colors.length] };
+
+  const polar = (angleDeg, radius) => {
+    const a = angleDeg * Math.PI / 180.0;
+    return { x: cx + radius * Math.cos(a), y: cy + radius * Math.sin(a) };
+  };
+
+  const tickPaths = new Array(ticks).fill(0).map((_, i) => {
+    const a = startAngle + i * step + step * 0.15;
+    const p1 = polar(a, rInner);
+    const p2 = polar(a, rOuter);
+    return { d: `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`, color: colorFor(i) };
   });
+
+  const dottedInner = (() => {
+    const a1 = startAngle + 2;
+    const a2 = endAngle - 2;
+    const p1 = polar(a1, rInner - 10);
+    const p2 = polar(a2, rInner - 10);
+    return `M ${p1.x} ${p1.y} A ${rInner - 10} ${rInner - 10} 0 0 1 ${p2.x} ${p2.y}`;
+  })();
+
   return (
     <svg className={styles.ldGaugeSvg} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation">
-      {arcs.map((arc, idx) => (
-        <path key={idx} d={arc.d} stroke={arc.color} strokeWidth="16" fill="none" strokeLinecap="round" />
+      {tickPaths.map((t, idx) => (
+        <path key={idx} d={t.d} stroke={t.color} strokeWidth="3" strokeLinecap="round" />
       ))}
+      <path d={dottedInner} stroke="#E1E6EA" strokeWidth="2" strokeDasharray="2 6" fill="none" />
     </svg>
   );
 };

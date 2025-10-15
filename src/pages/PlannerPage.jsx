@@ -10,12 +10,12 @@ const Sparkline = () => (
 const PlannerPage = () => {
   const [activeTab, setActiveTab] = useState('today');
   const devices = [
-    { name: 'EV Charger', kw: '4.2 kW', time: '7am - 9am', icon: '🔌' },
-    { name: 'Heat Pump', kw: '4.2 kW', time: '7am - 9am', icon: '🔥' },
-    { name: 'Central AC', kw: '4.2 kW', time: '7am - 9am', icon: '❄️' },
-    { name: 'Electric Heater', kw: '4.2 kW', time: '7am - 9am', icon: '♨️' },
-    { name: 'Dishwasher', kw: '4.2 kW', time: '7am - 9am', icon: '🧼' },
-    { name: 'Oven', kw: '4.2 kW', time: '7am - 9am', icon: '🍳' },
+    { name: 'EV Charger', kw: '4.2 kW', time: '7am - 9am', img: '/evCharger.png' },
+    { name: 'Heat Pump', kw: '4.2 kW', time: '7am - 9am', img: '/heatPump.png' },
+    { name: 'Central AC', kw: '4.2 kW', time: '7am - 9am', img: '/ac.png' },
+    { name: 'Electric Heater', kw: '4.2 kW', time: '7am - 9am', img: '/heater.png' },
+    { name: 'Dishwasher', kw: '4.2 kW', time: '7am - 9am', img: '/dishwasher.png' },
+    { name: 'Oven', kw: '4.2 kW', time: '7am - 9am', img: '/oven.png' },
   ];
 
   // Edit Plan modal state
@@ -39,20 +39,19 @@ const PlannerPage = () => {
   return (
     <section>
       <div className={styles.plannerRoot}>
-        <div className={styles.headerRow}>
-          <div>
-            <h2 className={styles.title}>Auto Planner</h2>
-            <p className={styles.subtitle}>Optimize your devices for savings</p>
-          </div>
+        <div style={{borderBottom: '1px solid #E3E3E3', paddingBottom: '16px'}} className={styles.headerRow}>
+          {/* <div> */}
+          <h2 className={styles.title}>Auto Planner</h2>
+          {/* </div> */}
           <button className={styles.dateBtn}>
             03 Oct 2025
             <svg className={styles.dateIcon} viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 2v2M13 2v2M3 8h12M4 4h10a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke="#9AA1A6" strokeWidth="1.4" strokeLinecap="round" fill="none"/></svg>
           </button>
         </div>
 
-        <div className={styles.tabs}>
-          <button className={`${styles.tab} ${activeTab==='today' ? styles.tabActive : ''}`} onClick={() => setActiveTab('today')}>Today’s Plan</button>
-          <button className={`${styles.tab} ${activeTab==='tomorrow' ? styles.tabActive : ''}`} onClick={() => setActiveTab('tomorrow')}>Tomorrow Plan</button>
+        <div className={styles.apxTabs}>
+          <button className={`${styles.apxTab} ${activeTab==='today' ? styles.apxTabActive : ''}`} onClick={() => setActiveTab('today')}>Today’s Plan</button>
+          <button className={`${styles.apxTab} ${activeTab==='tomorrow' ? styles.apxTabActive : ''}`} onClick={() => setActiveTab('tomorrow')}>Tomorrow Plan</button>
         </div>
 
         <div className={styles.metrics}>
@@ -91,7 +90,7 @@ const PlannerPage = () => {
             <div key={d.name} className={styles.deviceCard}>
               <div className={styles.deviceHeader}>
                 <div className={styles.deviceTitleRow}>
-                  <span className={styles.deviceIcon} aria-hidden="true">{d.icon}</span>
+                  <img className={styles.apxDeviceIconImg} src={d.img} alt="" aria-hidden="true" />
                   <div className={styles.deviceName}>{d.name}</div>
                 </div>
                 <span className={styles.deviceKw}>{d.kw}</span>
@@ -111,26 +110,26 @@ const PlannerPage = () => {
 
         {isEditOpen && (
           <div className={styles.modalOverlay} onClick={(e) => { if (e.target === e.currentTarget) setIsEditOpen(false); }}>
-            <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="editPlanTitle">
+            <div className={`${styles.modal} ${styles.apxModal}`} role="dialog" aria-modal="true" aria-labelledby="editPlanTitle">
               <div className={styles.modalHeader}>
                 <div id="editPlanTitle" className={styles.modalTitle}>Edit Plan</div>
                 <button className={styles.modalClose} aria-label="Close" onClick={() => setIsEditOpen(false)}>
                   <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 4.5l9 9M13.5 4.5l-9 9" stroke="#9AA1A6" strokeWidth="1.6" strokeLinecap="round"/></svg>
                 </button>
               </div>
-              <div className={styles.modalBody}>
-                <div className={styles.editHead}>
+              <div className={`${styles.modalBody} ${styles.apxModalBody}`}>
+                <div className={`${styles.editHead} ${styles.apxEditHead}`}>
                   <div>Device Name</div>
                   <div>Kw</div>
                   <div>Stat Time</div>
                   <div>Duration</div>
-                  <div>Estimated Cost</div>
+                  <div className={styles.apxCellCost}>Estimated Cost</div>
                 </div>
                 {planRows.map((row, idx) => (
-                  <div className={styles.editRow} key={row.name}>
+                  <div className={`${styles.editRow} ${styles.apxEditRow}`} key={row.name}>
                     <div className={styles.cellName}>{row.name}</div>
                     <div className={styles.cellKw}>{row.kw}</div>
-                    <div className={styles.cellStart}>
+                    <div className={`${styles.cellStart} ${styles.apxCellStart}`}>
                       <select
                         className={styles.timeSelect}
                         value={row.start}
@@ -140,7 +139,7 @@ const PlannerPage = () => {
                       </select>
                       <svg className={styles.timeIcon} viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="7" stroke="#9AA1A6" strokeWidth="1.4" fill="none"/><path d="M9 5v4l3 2" stroke="#9AA1A6" strokeWidth="1.4" strokeLinecap="round"/></svg>
                     </div>
-                    <div className={styles.cellDuration}>
+                    <div className={`${styles.cellDuration} ${styles.apxCellDuration}`}>
                       <div className={styles.stepper}>
                         <button className={styles.stepperBtn} onClick={() => changeDuration(idx, row.duration - 1)} aria-label="Decrease duration">
                           <svg width="16" height="16" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h10" stroke="#9AA1A6" strokeWidth="1.8" strokeLinecap="round"/></svg>
@@ -151,7 +150,7 @@ const PlannerPage = () => {
                         </button>
                       </div>
                     </div>
-                    <div className={styles.cellCost}>{row.cost}</div>
+                    <div className={`${styles.cellCost} ${styles.apxCellCost}`}>{row.cost}</div>
                   </div>
                 ))}
               </div>
